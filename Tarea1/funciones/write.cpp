@@ -17,6 +17,7 @@ int main()
 	pinMode(Pin_signal,OUTPUT);
 
 		char byte;
+		int c;
 		printf("ingrese un caracter\n");
 		scanf("%c",&byte);
 		digitalWrite(Pin_signal,LOW);//bit de inicio
