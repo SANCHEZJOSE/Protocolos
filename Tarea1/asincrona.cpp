@@ -12,7 +12,7 @@ void	openPort( int signal , int tiempo){
 void enviarByte( BYTE byte ){
 	digitalWrite( pin_Signal , LOW );//bit de inicio
 	delayMicroseconds( Periodo );//duracion del bit
-	int i=1,paridad=0;
+	int i=0,paridad=0;
 	while(i<8){
 		if ((byte>>i) & 0x01 ){//pulso por cada bit activo
 			digitalWrite( pin_Signal , HIGH );
