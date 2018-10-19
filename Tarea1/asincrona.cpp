@@ -3,12 +3,9 @@ int pin_Signal=17,Periodo=200,bits=12;
 void	openPort( int signal , int tiempo){
 	pin_Signal=signal;
 	if ( wiringPiSetupGpio() == -1 )
-	{
 		printf("No se pudo iniciar la libreria wiringPi");
-		
-	}
 	Periodo=tiempo;
-		}
+}
 void enviarByte( BYTE byte ){
 	digitalWrite( pin_Signal , LOW );//bit de inicio
 	delayMicroseconds( Periodo );//duracion del bit
