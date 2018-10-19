@@ -1,11 +1,14 @@
 #include "asincrona.h"
-int pin_Signal=17,Periodo=200,bits=12;
-void	openPort( int signal , int tiempo){
+int pin_Signal=17,Periodo=200,bits=12,pprueba=3*Periodo/2;
+void openPort( int signal , int tiempo){
 	pin_Signal=signal;
 	if ( wiringPiSetupGpio() == -1 )
+	{
 		printf("No se pudo iniciar la libreria wiringPi");
+		
+	}
 	Periodo=tiempo;
-}
+		}
 void enviarByte( BYTE byte ){
 	digitalWrite( pin_Signal , LOW );//bit de inicio
 	delayMicroseconds( Periodo );//duracion del bit
@@ -25,7 +28,7 @@ void enviarByte( BYTE byte ){
 	digitalWrite( pin_Signal , (paridad%2) == 0 );//paridad
 	delayMicroseconds( Periodo );
 	digitalWrite( pin_Signal , HIGH );//bit de termino
-	delayMicroseconds( Periodo*2 );
+	delayMicroseconds( Periodo*5 );
 	}
 void writePort(int serial_fd, BYTE *data, int size){
 	pin_Signal = serial_fd;
@@ -41,7 +44,6 @@ void readPort(int serial_fd, BYTE *data, int size){
 	for(int i=0;i<size;i++){
 		recibirByte(data[i]);
 		}
-    
 }
 bool recibirByte(BYTE & dato){
 	bool level,state;
@@ -52,13 +54,12 @@ bool recibirByte(BYTE & dato){
 	{
 	level=digitalRead(pin_Signal);
 	} while (level==state);
-    delayMicroseconds(3*Periodo/2);
+    delayMicroseconds(pprueba);
     int i=0;
-	while(i<(bits-3)){
+	while(i<9){
 		level=digitalRead(pin_Signal);
 		if ((level== 1)&&(i<8)){
 			dato= dato | ( 0x01<<i );
-			//printf("%d	",i);
 			c++;}
 		if ( (level == 1) && i==8)
 			paridad=1;
@@ -67,5 +68,5 @@ bool recibirByte(BYTE & dato){
 		i++;
 		delayMicroseconds(Periodo);
 	}
-	return ((c%2) == paridad);
+	return ((c%2) != paridad);
 	}
