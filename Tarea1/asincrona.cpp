@@ -12,7 +12,7 @@ void	openPort( int signal , int tiempo){
 void enviarByte( BYTE byte ){
 	digitalWrite( pin_Signal , LOW );//bit de inicio
 	delayMicroseconds( Periodo );//duracion del bit
-	int i=1,paridad=0;
+	int i=0,paridad=0;
 	while(i<8){
 		if ((byte>>i) & 0x01 ){//pulso por cada bit activo
 			digitalWrite( pin_Signal , HIGH );
@@ -46,7 +46,7 @@ void readPort(int serial_fd, BYTE *data, int size){
 		}
     
 }
-bool recibirByte(BYTE &dato){
+bool recibirByte(BYTE & dato){
 	bool level,state;
 	int paridad,c;
 	dato=0;
@@ -57,20 +57,18 @@ bool recibirByte(BYTE &dato){
 	} while (level==state);
     delayMicroseconds(3*Periodo/2);
     int i=0;
-	while(i<(bits-2)){
+	while(i<(bits-3)){
 		level=digitalRead(pin_Signal);
-		if ( (level== 1) && i<8){
+		if ((level== 1)&&(i<8)){
 			dato= dato | ( 0x01<<i );
-			printf("%d	",i);
+			//printf("%d	",i);
 			c++;}
-		if ( (level == 1) && i==9)
+		if ( (level == 1) && i==8)
 			paridad=1;
 		else
 			paridad=0;
 		i++;
 		delayMicroseconds(Periodo);
 	}
-		
 	return ((c%2) == paridad);
-	
 	}
