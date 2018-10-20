@@ -1,10 +1,11 @@
 #include "asincrona.h"
 int main(){
-	int N=20;
+	while(true){
+	int N=513;
 	BYTE mensaje[N];
-	printf("su mensaje es	:");
-	openPort(18, 100000);
-	readPort(18,mensaje,N);
-	printf("%c",(char)mensaje[0]);
+	openPort(18,10000);
+	readPort(18,mensaje,N,100);
+	printf("su mensaje es :|%s|\n",(char*)mensaje);
+	}
 	return 0;
 	}
