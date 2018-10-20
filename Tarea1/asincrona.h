@@ -5,6 +5,8 @@
 #include <time.h>
 #include <wiringPi.h>
 #include <string.h>
+
+#include "struct.h"
 ///Macros
 #define BYTE unsigned char
 
@@ -16,7 +18,7 @@ void  openPort(int ,int );
 void enviarByte(BYTE);
 bool recibirByte(BYTE &);
 void writePort(int serial_fd, BYTE *data, int size);
-void readPort(int serial_fd, BYTE *data, int size);
+void readPort(int serial_fd, BYTE *data, int size,int);
 //void closePort(int fd);
 
 #endif
