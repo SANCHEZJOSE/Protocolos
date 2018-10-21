@@ -5,6 +5,8 @@
 #include <time.h>
 #include <wiringPi.h>
 #include <string.h>
+
+#include "struct.h"
 ///Macros
 #define BYTE unsigned char
 

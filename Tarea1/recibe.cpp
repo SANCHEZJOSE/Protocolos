@@ -1,11 +1,20 @@
 #include "asincrona.h"
+#include "funciones.h"
+
+#define U_TIME 10000
+#define PUERTO 18
+
 int main(){
-	while(true){
-	int N=513;
-	BYTE mensaje[N];
-	openPort(18,10000);
-	readPort(18,mensaje,N,100);
-	printf("su mensaje es :|%s|\n",(char*)mensaje);
+	openPort(PUERTO,U_TIME);
+	while (true){
+		Paquete p;
+		bool ok = recibe(PUERTO,p,300);
+	if(ok){
+		p.data[p.Long]='\0';
+		printf("paquete ok: |%s|\n",p.data);
+		fflush(stdout);
+		}
 	}
+	//closePort(fn);
 	return 0;
-	}
+}

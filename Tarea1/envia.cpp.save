@@ -1,0 +1,13 @@
+#include "asincrona.h"
+#define U_TIME 10000
+int main(){
+	int puerto=openPort(17,U_TIME);
+	if(puerto==-1
+	while (true){
+		BYTE *mensaje=(unsigned char*)"hola nico como estas!";
+		int size=strlen((char*)mensaje);
+		openPort(17, U_TIME);
+		writePort(17,mensaje,size);
+	}
+	return 0;
+}
