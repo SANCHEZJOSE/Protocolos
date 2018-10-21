@@ -1,6 +1,7 @@
 #include "asincrona.h"
-#include "funciones.h"
-int pin_Signal=17,Periodo=200,bits=12,pprueba=3*Periodo/2,timeout,cant_bytes=0,tolerancia=-500;
+
+int pin_Signal=17,Periodo=200,bits=12,pprueba=3*Periodo/2,timeout,cant_bytes=0,tolerancia=-100;
+
 unsigned int t_anterior,tiempo=0;//tiempos para timeout(receptor)
 
 void openPort( int signal , int tiempo){
