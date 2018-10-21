@@ -1,5 +1,5 @@
 #include "funciones.h"
-#define U_TIME 10000
+#define U_TIME 5000
 #define PUERTO 17
 int main(){
 	//int c = 0;

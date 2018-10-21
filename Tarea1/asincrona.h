@@ -5,8 +5,6 @@
 #include <time.h>
 #include <wiringPi.h>
 #include <string.h>
-
-#include "struct.h"
 ///Macros
 #define BYTE unsigned char
 
@@ -14,11 +12,11 @@
 //Pin de la señal,periodo en uS
 
 /// Prototipos
-void  openPort(int ,int );
-void enviarByte(BYTE);
-bool recibirByte(BYTE &);
-void writePort(int serial_fd, BYTE *data, int size);
-void readPort(int serial_fd, BYTE *data, int size,int);
+void  openPort(int pinSignal ,int tiempo);
+void enviarByte( BYTE byte);
+bool recibirByte(BYTE & dato);
+void writePort(int pinSignal, BYTE *data, int size);
+int readPort(int pinSignal, BYTE *data, int size,int timeout_msec,bool & paridad);
 //void closePort(int fd);
 
 #endif
