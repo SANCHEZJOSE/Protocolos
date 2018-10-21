@@ -16,7 +16,7 @@ void  openPort(int ,int );
 void enviarByte(BYTE);
 bool recibirByte(BYTE &);
 void writePort(int serial_fd, BYTE *data, int size);
-void readPort(int serial_fd, BYTE *data, int size);
+void readPort(int serial_fd, BYTE *data, int size,int);
 //void closePort(int fd);
 
 #endif
